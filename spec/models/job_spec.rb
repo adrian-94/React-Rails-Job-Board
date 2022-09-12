@@ -1,12 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Job, type: :model do
+  before(:all) do
+    @clone_job = FactoryBot.create(:job)
+  end
   # maybe not all of these are currently validated
   it 'is not valid without a title, description, status or slug' do
     %i[title description status slug].each do |attr|
-      user = Job.new(attr => nil)
+      job = Job.new(attr => nil)
       puts attr
-      expect(user).to_not be_valid
+      expect(job).to_not be_valid
     end
   end
 

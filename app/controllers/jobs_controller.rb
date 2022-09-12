@@ -1,11 +1,21 @@
 class JobsController < ApplicationController
   before_action :set_job, only: %i[show update destroy]
-
+ 
   # GET /jobs
   def index
     @jobs = Job.all
+    # @jobs = Job.all.order("created_at DESC")
+    # @jobs = Job.where(status: :open).order("created_at DESC")
 
     render json: @jobs
+  end
+
+  def update_status 
+    if params[:status].present? && Job::STATUSES.include?(params[:status].to_sym)
+      @job.update(status: params[:status])
+    else
+      render json: @job.errors, status: :unprocessable_entity
+    end
   end
 
   # GET /jobs/1
@@ -16,7 +26,7 @@ class JobsController < ApplicationController
   # POST /jobs
   def create
     @job = Job.new(job_params)
-
+    # @job.job_status = draft;
     if @job.save
       render json: @job, status: :created, location: @job
     else
