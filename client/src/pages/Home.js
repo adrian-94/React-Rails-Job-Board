@@ -3,9 +3,44 @@ import React, { useContext, useState } from 'react';
 // import RenderJson from '../components/RenderJson';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider';
+import styled from 'styled-components'
 
+const HomeWrapper = styled.div`
+  border: 1px solid #efefef;
+  background: #fff;
+`
+
+const JobWrapper = styled.div`
+  border: 1px solid #efefef;
+  background-color: #00FFFF;
+`
+const LinkWrapper = styled.div`
+  margin: 30px 0 20px 0;
+  height:50px;
+  a {
+    color: #fff;
+    background-color: #71b406;
+    border-radius: 4px;
+    padding: 10px 50px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #71b406;
+    text-align: center;
+    line-height: 20px;
+    min-height: 40px;
+    margin: 7px;
+    font-weight: 600;
+    text-decoration: none;
+    width: 100%;
+    transition: ease-in-out 0.1s;
+    &:hover{
+      border-color: #619a07;
+      background: #619a07;
+    }
+  }
+  `
 const Home =  () => {
-  const {authenticated, email} = useContext(AuthContext);
+  const {authenticated, user} = useContext(AuthContext);
   const [jobs, setJobs] = useState(null)
 
   // On initial render fetch /jobs from the api
@@ -25,22 +60,24 @@ const Home =  () => {
 
   return(
 
-    <div>
+    <HomeWrapper>
       <h1>All Jobs</h1>
       {/* Render authenticated information */}
-      {authenticated? <div> Hello {email}</div> : <div></div>}
+      {authenticated? <div> Hello {user.name}</div> : <div></div>}
       {/* Render jobs */}
       {
         jobs && jobs.map(job => {
           return (
-            <div key={job.id}>
+            <JobWrapper key={job.id}>
               <h3>{job.title}</h3>
-              <Link to={`/jobs/` + job.slug}>View Job</Link>
-            </div>
+              <LinkWrapper>
+                <Link to={`/jobs/` + job.slug}>View Job</Link>
+              </LinkWrapper>  
+            </JobWrapper>
           )
         })
       }
-    </div>
+    </HomeWrapper>
   )
 };
 

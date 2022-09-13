@@ -28,7 +28,7 @@ class JobsController < ApplicationController
   # POST /jobs
   def create
     @job = Job.new(job_params)
-    
+
     # @job.job_status = draft;
     if @job.save
       render json: @job, status: :created, location: @job
@@ -39,7 +39,6 @@ class JobsController < ApplicationController
 
   # PATCH/PUT /jobs/1
   def update
-    p "Updating" 
     if @job.update(job_params)
       render json: @job
     else

@@ -15,11 +15,14 @@ class JobApplicationsController < ApplicationController
 
   # POST /job_applications
   def create
+    p "create met"
+    p job_application_params
     @job_application = JobApplication.new(job_application_params)
-    p @job_application
     if @job_application.save
       render json: @job_application, status: :created, location: @job_application
     else
+      p  @job_application.errors
+
       render json: @job_application.errors, status: :unprocessable_entity
     end
   end
