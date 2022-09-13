@@ -16,7 +16,7 @@ class JobApplicationsController < ApplicationController
   # POST /job_applications
   def create
     @job_application = JobApplication.new(job_application_params)
-
+    p @job_application
     if @job_application.save
       render json: @job_application, status: :created, location: @job_application
     else
@@ -46,6 +46,6 @@ class JobApplicationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def job_application_params
-      params.require(:job_application).permit(:job_id, :user_profile_id, :status)
+      params.require(:job_application).permit(:job_id, :user, :status)
     end
 end

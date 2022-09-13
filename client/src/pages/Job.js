@@ -1,35 +1,41 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, {useContext, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-// import Select from 'react-select'
+import { AuthContext } from '../providers/AuthProvider';
 
 const Job = (props) => {
   const params = useParams();
   const [job, setJob] = useState(null);
-  
+  const[jobStatus, setJobStatus] = useState(1);
+  const {authenticated, uid} = useContext(AuthContext);
+
+  console.log(useContext(AuthContext));
+
   const applyToJob = () => {
     // Should make an api call to apply to the job
+
+    axios.post('/job_applications/',  {job_application: {"job_id": job.id, "status":  0}} )
+    .then(res => {
+      console.log("Success" + res)
+    })
+    .catch(err => {
+      console.log(err)
+    }
+    )
   }
 
   const updateJobStatus = (jobStatus) => {
-    // Should make an api call to update the job  status
-    axios.patch('/jobs/' + params.slug, { status: jobStatus }, {
-      headers: {
-      'Content-Type': 'application/json'
-      }})
-    .then(
-      console.log("Success")
-    )
+     axios.patch('/jobs/' + params.slug,  { "status": jobStatus } )
+    .then(res => {
+      console.log("Success" + res)
+    })
     .catch(err => {
-      console.log("Failed update status with error"+ err);
-    } 
+      console.log(err)
+    }
     )
   }
 
-  // React.useLayoutEffect(() => {
-
-  // } )
   React.useEffect(() => {
     axios.get('/jobs/' + params.slug)
     .then(res => {
@@ -42,27 +48,23 @@ const Job = (props) => {
     )
   }, [])
 
-  const handleChange = (jobStatus) => {
-    if(job.status !== jobStatus){      
-      updateJobStatus(jobStatus);
+  const handleChange = (event) => {
+    const selected = parseInt(event.target.value);
+    if(selected !== jobStatus){   
+      setJobStatus(selected);   
+      updateJobStatus(selected);
     }
   }
-
-  const options =  [
-    { value: '0', label: 'closed' },
-    { value: '1', label: 'open' },
-    { value: '2', label: 'draft' }
-  ];
 
   return(
     <Container >
       <h1>{job?.title}</h1>
       <p>{job?.description}</p>
-      <button onClick={applyToJob}>Apply to Job</button>
+      {authenticated?<button onClick={applyToJob}>Apply to Job</button> : <div></div>}
       <h2> Job Status</h2>
       <select
         onChange={handleChange}
-        defaultValue={1}
+        defaultValue={jobStatus}
         className="browser-default custom-select">
         <option value="0">Closed</option>
         <option value="1">Open</option>

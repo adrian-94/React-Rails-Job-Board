@@ -28,6 +28,7 @@ class JobsController < ApplicationController
   # POST /jobs
   def create
     @job = Job.new(job_params)
+    
     # @job.job_status = draft;
     if @job.save
       render json: @job, status: :created, location: @job
@@ -38,11 +39,11 @@ class JobsController < ApplicationController
 
   # PATCH/PUT /jobs/1
   def update
-    console.log("Updating" + job_params.status)
+    p "Updating" 
     if @job.update(job_params)
       render json: @job
     else
-      render json: @job.errors, status: :unprocessable_entity, hea
+      render json: @job.errors, status: :unprocessable_entity
     end
   end
 
@@ -56,8 +57,8 @@ class JobsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_job
     @job = Job.find_by!(slug: params[:id])
+    # @job = Job.find_by_slug(params[:id])
   end
-
   # Only allow a list of trusted parameters through.
   def job_params
     params.require(:job).permit(:title, :user_id, :description, :status)

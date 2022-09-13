@@ -1,12 +1,11 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import RenderJson from '../components/RenderJson';
+// import RenderJson from '../components/RenderJson';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider';
 
 const Home =  () => {
   const {authenticated, email} = useContext(AuthContext);
-  console.log(useContext(AuthContext));
   const [jobs, setJobs] = useState(null)
 
   // On initial render fetch /jobs from the api

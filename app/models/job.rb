@@ -14,4 +14,9 @@ class Job < ApplicationRecord
     #   break unless Job.where(slug: slug).exists?
     # end
   end
+
+  # def to_param
+  #   #return the string of the slug stored in our database
+  #   self.slug
+  # end
 end
