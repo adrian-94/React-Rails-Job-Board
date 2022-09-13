@@ -8,15 +8,15 @@ class Job < ApplicationRecord
   STATUSES = [:closed, :open, :draft]
 
   def generate_slug
-    self.slug = title
-    # loop do
-    #   self.slug = SecureRandom.uuid
-    #   break unless Job.where(slug: slug).exists?
-    # end
+    # self.slug = title
+    loop do
+      self.slug = SecureRandom.uuid
+      break unless Job.where(slug: slug).exists?
+    end
   end
 
-  # def to_param
-  #   #return the string of the slug stored in our database
-  #   self.slug
-  # end
+  def to_param
+    #return the string of the slug stored in our database
+    self.slug
+  end
 end
