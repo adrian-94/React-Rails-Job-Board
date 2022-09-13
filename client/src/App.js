@@ -15,6 +15,7 @@ function App() {
         <Route path = "/" element = {<Home />} />
         <Route path = "/register" element = {<Register />} />
         <Route path = "/jobs/:slug" element = {<Job />} />
+        <Route path = "/jobs/:slug/updateStatus/:status" element = {<Job />} />
         <Route path = "/login" element = {<Login />} />
         <Route element = {<RequireAuth />}>
           <Route path = "/applications" element = {<Applications />} />

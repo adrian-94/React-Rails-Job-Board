@@ -5,9 +5,13 @@ class Job < ApplicationRecord
   validates :slug, uniqueness: true
 
   # Has status: open, closed, draft
-  STATUSES = [:open, :closed, :draft]
+  STATUSES = [:closed, :open, :draft]
 
   def generate_slug
-    self.slug = SecureRandom.uuid
+    self.slug = title
+    # loop do
+    #   self.slug = SecureRandom.uuid
+    #   break unless Job.where(slug: slug).exists?
+    # end
   end
 end

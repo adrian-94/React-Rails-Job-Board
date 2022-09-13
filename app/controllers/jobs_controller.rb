@@ -3,20 +3,22 @@ class JobsController < ApplicationController
  
   # GET /jobs
   def index
-    @jobs = Job.all
-    # @jobs = Job.all.order("created_at DESC")
-    # @jobs = Job.where(status: :open).order("created_at DESC")
+    # Lists only open jobs as STATUSES = [:closed, :open, :draft]
+    @jobs = Job.where(status: 1).order("created_at DESC")
 
     render json: @jobs
   end
 
-  def update_status 
-    if params[:status].present? && Job::STATUSES.include?(params[:status].to_sym)
-      @job.update(status: params[:status])
-    else
-      render json: @job.errors, status: :unprocessable_entity
-    end
-  end
+  # #  PATCH/PUT /jobs/1/status/0 
+  # def update_status 
+  #   p "eneterd update status"
+  #   @
+  #   if params[:status].present? && Job::STATUSES.include?(params[:status].to_sym)
+  #     @job.update(status: params[:status])
+  #   else
+  #     render json: @job.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # GET /jobs/1
   def show

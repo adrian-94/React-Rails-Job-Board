@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
+import RenderJson from '../components/RenderJson';
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider';
 
 const Home =  () => {
-  const auth = useContext(AuthContext)
+  const {authenticated, email} = useContext(AuthContext);
+  console.log(useContext(AuthContext));
   const [jobs, setJobs] = useState(null)
 
   // On initial render fetch /jobs from the api
@@ -22,17 +25,18 @@ const Home =  () => {
   }, [])
 
   return(
+
     <div>
       <h1>All Jobs</h1>
       {/* Render authenticated information */}
-      {/* <RenderJson json={auth} /> */}
+      {authenticated? <div> Hello {email}</div> : <div></div>}
       {/* Render jobs */}
       {
         jobs && jobs.map(job => {
           return (
             <div key={job.id}>
               <h3>{job.title}</h3>
-              <a href={`/jobs/` + job.slug}>View Job</a>
+              <Link to={`/jobs/` + job.slug}>View Job</Link>
             </div>
           )
         })
