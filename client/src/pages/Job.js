@@ -6,24 +6,23 @@ import { useParams } from 'react-router-dom';
 
 const Job = (props) => {
   const params = useParams();
-  console.log(params.slug)
   const [job, setJob] = useState(null);
-  const [status, setStatus] = useState(0);
   
   const applyToJob = () => {
     // Should make an api call to apply to the job
   }
 
-  const updateJobStatus = () => {
-    // Should make an api call to updat the job  status
-    console.log("params in req" + params.status)
-    axios.put('/jobs/' + params.slug, { status: status })
-    .then(res => {
+  const updateJobStatus = (jobStatus) => {
+    // Should make an api call to update the job  status
+    axios.patch('/jobs/' + params.slug, { status: jobStatus }, {
+      headers: {
+      'Content-Type': 'application/json'
+      }})
+    .then(
       console.log("Success")
-    })
+    )
     .catch(err => {
-      setStatus([])
-      console.log(err)
+      console.log("Failed update status with error"+ err);
     } 
     )
   }
@@ -32,12 +31,9 @@ const Job = (props) => {
 
   // } )
   React.useEffect(() => {
-    console.log("Slug"+  params.slug);
     axios.get('/jobs/' + params.slug)
     .then(res => {
       setJob(res.data)
-      // setStatus(res.data.status)
-      console.log("fetched job " + res.data)
     })
     .catch(err => {
       setJob([])
@@ -47,10 +43,8 @@ const Job = (props) => {
   }, [])
 
   const handleChange = (jobStatus) => {
-    if(status !== jobStatus){
-      setStatus(jobStatus)
-      params.status = status;
-      updateJobStatus();
+    if(job.status !== jobStatus){      
+      updateJobStatus(jobStatus);
     }
   }
 
@@ -68,7 +62,7 @@ const Job = (props) => {
       <h2> Job Status</h2>
       <select
         onChange={handleChange}
-        defaultValue={status}
+        defaultValue={1}
         className="browser-default custom-select">
         <option value="0">Closed</option>
         <option value="1">Open</option>
