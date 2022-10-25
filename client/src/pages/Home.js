@@ -41,6 +41,7 @@ const LinkWrapper = styled.div`
   `
 const Home =  () => {
   const {authenticated, user} = useContext(AuthContext);
+  console.log("current user"+ user);
   const [jobs, setJobs] = useState(null)
 
   // On initial render fetch /jobs from the api
@@ -64,6 +65,7 @@ const Home =  () => {
       <h1>All Jobs</h1>
       {/* Render authenticated information */}
       {authenticated? <div> Hello {user.name}</div> : <div></div>}
+      {authenticated?<LinkWrapper><Link to={`/job/form`}>Create Job</Link></LinkWrapper>  : <div></div>}
       {/* Render jobs */}
       {
         jobs && jobs.map(job => {

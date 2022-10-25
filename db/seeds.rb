@@ -8,7 +8,7 @@
 
 require 'faker'
 
-u1 = User.create(email: 'test@test.com', password: 123_456)
+u1 = User.create(name: 'Test User', id:123, email: 'test@test.com', password: 123_456)
 
 10.times do
   User.create(

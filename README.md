@@ -39,7 +39,7 @@ has many job applications
 > List the current applications for the logged in user
 > Requires the user to be logged in
 > allow the user to update their status
->  allow the user to delete their job application (which updates the status)
+>  allow the user to delete their job application 
 
 # Job
 > allow the user to apply for the job

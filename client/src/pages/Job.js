@@ -15,6 +15,7 @@ const StyledSelect = styled("select")`
   background-color: #FFFF00
 `;
 
+
 const Job = (props) => {
   const params = useParams();
   const [job, setJob] = useState(null);
@@ -24,7 +25,7 @@ const Job = (props) => {
   console.log(useContext(AuthContext));
 
   const applyToJob = () => {
-    // Should make an api call to apply to the job
+    // Makes an api call to apply to the job
 
     axios.post('/job_applications/',  {job_application: {"job_id": job.id,"user": user, "status":0}} )
     .then(res => {
@@ -80,7 +81,7 @@ const Job = (props) => {
         <StyledOption value="1">Open</StyledOption>
         <StyledOption value="2">Draft</StyledOption>
       </StyledSelect>
-      </Container>
+    </Container>
   )
 };
 

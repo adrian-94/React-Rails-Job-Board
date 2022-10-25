@@ -31,7 +31,6 @@ const Layout = () => {
     <>
       <Navbar expand = "md" bg = "dark" variant = "dark">
         <Container>
-          <Navbar.Brand onClick = {()=>navigate("/")}>EarlyDay</Navbar.Brand>
           <Navbar.Toggle aria-controls="response-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto" onSelect = {handleSelect}>
