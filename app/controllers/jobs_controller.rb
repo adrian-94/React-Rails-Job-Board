@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: %i[show update destroy]
+  before_action :set_job, only: %i[show update create destroy]
  
   # GET /jobs
   def index
@@ -28,9 +28,10 @@ class JobsController < ApplicationController
   # POST /jobs
   def create
     @job = Job.new(job_params)
-    p job_params
+    p "create#{job_params}"
     # @job.job_status = draft;
     if @job.save
+      p "successfully created #{@job.id}"
       render json: @job, status: :created, location: @job
     else
       render json: @job.errors, status: :unprocessable_entity
