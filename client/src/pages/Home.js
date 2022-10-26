@@ -7,12 +7,20 @@ import styled from 'styled-components'
 
 const HomeWrapper = styled.div`
   border: 1px solid #efefef;
-  background: #fff;
 `
 
 const JobWrapper = styled.div`
   border: 1px solid #efefef;
   background-color: #00FFFF;
+`
+
+const StyledSpan = styled.span`
+border: 1px solid #efefef;
+border: 1px solid #71b406;
+font-size: 20px;
+color:#0000FF;
+text-align: left;
+background-color: #00FFFF;
 `
 const LinkWrapper = styled.div`
   margin: 30px 0 20px 0;
@@ -30,7 +38,6 @@ const LinkWrapper = styled.div`
     min-height: 40px;
     margin: 7px;
     font-weight: 600;
-    text-decoration: none;
     width: 100%;
     transition: ease-in-out 0.1s;
     &:hover{
@@ -62,10 +69,10 @@ const Home =  () => {
   return(
 
     <HomeWrapper>
+      {authenticated? <StyledSpan> Welcome, {user.email}</StyledSpan> : <div></div>}
+      {authenticated?<LinkWrapper><Link to={`/job/form`}>Create Job</Link></LinkWrapper>  : <div></div>}
       <h1>All Jobs</h1>
       {/* Render authenticated information */}
-      {authenticated? <div> Hello {user.name}</div> : <div></div>}
-      {authenticated?<LinkWrapper><Link to={`/job/form`}>Create Job</Link></LinkWrapper>  : <div></div>}
       {/* Render jobs */}
       {
         jobs && jobs.map(job => {

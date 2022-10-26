@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { Button, Container, Form } from 'react-bootstrap';
+import {Container, Form } from 'react-bootstrap';
 import styled from 'styled-components';
 
 const StyledSelect = styled("select")`
@@ -16,14 +16,12 @@ const StyledOption = styled("option")`
 
 const StyledButton = styled("button")`
   display: block;
-  background-color: #0000FF;
+  background-color: #00FFFF;
 `
 
 const JobForm = () => {
   const navigate=useNavigate();
-  //:title, :user_id, :description, :status
 
-  // const {user} = useContext(AuthContext);
   const [title, setTitle]=useState("");
   const [description, setDescription]=useState("");
   const [status, setStatus]=useState(2);

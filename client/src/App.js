@@ -3,6 +3,7 @@ import './App.css';
 import Layout from './components/Layout';
 import RequireAuth from './components/RequireAuth';
 import Applications from './pages/Applications';
+import ApplicationForm from './pages/ApplicationForm';
 import Home from './pages/Home';
 import Job from './pages/Job';
 import JobForm from './pages/JobForm';
@@ -21,6 +22,7 @@ function App() {
         <Route path = "/login" element = {<Login />} />
         <Route element = {<RequireAuth />}>
           <Route path = "/applications" element = {<Applications />} />
+          <Route path = "/applications/form" element = {<ApplicationForm />} />
         </Route>
       </Route>
     </Routes>

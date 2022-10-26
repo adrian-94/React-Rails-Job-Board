@@ -44,11 +44,13 @@ class JobApplicationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job_application
+      # @job = Job.find_by_slug(params[:id])
+
       @job_application = JobApplication.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def job_application_params
-      params.require(:job_application).permit(:job_id, :user, :status)
+      params.require(:job_application).permit(:job_id, :user, :status, :cover_letter, :name, :experience, :contact)
     end
 end

@@ -13,6 +13,10 @@
 ActiveRecord::Schema.define(version: 2022_08_05_201959) do
 
   create_table "job_applications", force: :cascade do |t|
+    t.string "name", null: true
+    t.string "cover_letter", null: true
+    t.string "experience", null: true
+    t.integer "contact", null: true
     t.integer "job_id", null: false
     t.integer "user_id", null: false
     t.integer "status", default: 0

@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: %i[show update create destroy]
+  before_action :set_job, only: %i[show update destroy]
  
   # GET /jobs
   def index

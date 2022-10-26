@@ -25,7 +25,7 @@ end
     slug: Faker::Internet.slug
   )
 
-  2.times do |_j|
+  4.times do |_j|
     JobApplication.create(
       job: job,
       user: User.order('RANDOM()').first,
