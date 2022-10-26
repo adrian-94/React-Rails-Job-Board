@@ -41,10 +41,12 @@ const JobForm = () => {
     // } })
     axios.post('/jobs/',  {job: {"title": title, "description": description, "status": status}})
     .then(res => {
-      console.log("Success" + res)
+      console.log("Success" + res);
+      alert("Job created successfully");
       navigate('/');
     })
     .catch(err => {
+      alert("Please fill all the required fields");
       console.log(err.response.data)
     }
     )

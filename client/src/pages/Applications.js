@@ -46,7 +46,7 @@ const Applications = () => {
     axios.get('/job_applications')
     .then(res => {
       setApplications(res.data)
-      console.log(res.data)
+      console.log("application Data"+res.data)
     })
     .catch(err => {
       setApplications([])
@@ -54,16 +54,31 @@ const Applications = () => {
     }
     )
   }, [])
+
+  // const[jobData,  setJob] = useState([]);
+  const getJob = (job_id) => {
+    axios.get('/jobs/'+job_id)
+    .then(res => {
+      // setJobs(res.data)
+      console.log("response data"+res.data);
+    })
+    .catch(err => {
+      console.log(err)
+    }
+    )
+  } 
   const renderPage = () => {
     if(authenticated){
       return(
         <><h1>My Applications</h1>
         {applications && applications.map(application => {
+          console.log("application Data curr"+getJob(application.job_id))
+          let currJob = getJob(application.job_id);
           return (
-            <JobWrapper key={application.job.id}>
-              <h3>{application.job.title}</h3>
+            <JobWrapper key={currJob.id}>
+              <h3>{currJob.title}</h3>
               <LinkWrapper>
-                <Link to={`/jobs/` + application.job.slug}>View Job</Link>
+                <Link to={`/jobs/` + currJob.slug}>View Job</Link>
               </LinkWrapper>  
             </JobWrapper>
           )

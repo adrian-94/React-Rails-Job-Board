@@ -41,13 +41,15 @@ const ApplicationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/job_applications/',  {job_application: {"name": name, "coverLetter": coverLetter, "experience": experience,
-    "contact": contact, "job_id": job.id,"user": user, "status":status}})
+    axios.post('/job_applications/',  {job_application: {"name": name, "cover_letter": coverLetter, "experience": experience,
+    "contact": contact, "job_id": job.id,"user_id": user.id, "status":status}})
     .then(res => {
       console.log("Success" + res)
+      alert("Application submitted successfully");
       navigate('/');
     })
     .catch(err => {
+      alert("Please fill all the required fields");
       console.log(err.response.data)
     }
     )

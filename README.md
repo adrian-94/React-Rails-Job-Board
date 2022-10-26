@@ -28,7 +28,7 @@ yarn start
 - Lists open jobs
 
 # Applications
-
+Fututre Scope:
 - List the current applications for the logged in user
 - Requires the user to be logged in
 - allow the user to update their status
