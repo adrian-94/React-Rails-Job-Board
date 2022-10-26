@@ -20,29 +20,22 @@ yarn install
 yarn start
 ```
 
-User
-
-```
-Authentication
-has many job applications
-```
-
 # HomePage
 
-> Lists the current jobs from the api
-> Has a link to view the job
-> Does not require the user to be logged in
-> Lists open jobs
+- Lists the current jobs from the api
+- Has a link to view the job
+- Does not require the user to be logged in
+- Lists open jobs
 
 # Applications
 
-> List the current applications for the logged in user
-> Requires the user to be logged in
-> allow the user to update their status
->  allow the user to delete their job application 
+- List the current applications for the logged in user
+- Requires the user to be logged in
+- allow the user to update their status
+- allow the user to delete their job application 
 
 # Job
-> allow the user to apply for the job
-> tell the user if they have applied previously
-> allow anyone to update the status ( can close, open or draft the job). 
+- allow the user to apply for the job
+- tell the user if they have applied previously
+- allow anyone to update the status ( can close, open or draft the job). 
 
