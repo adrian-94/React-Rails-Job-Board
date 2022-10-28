@@ -7,20 +7,21 @@ import styled from 'styled-components'
 
 const HomeWrapper = styled.div`
   border: 1px solid #efefef;
+  color: #228B22;
 `
 
 const JobWrapper = styled.div`
   border: 1px solid #efefef;
-  background-color: #00FFFF;
+  background-color: #FFFFFF;
 `
 
-const StyledSpan = styled.span`
-border: 1px solid #efefef;
-border: 1px solid #71b406;
-font-size: 20px;
-color:#0000FF;
-text-align: left;
-background-color: #00FFFF;
+const styledDiv = styled.span`
+  border: 1px solid #efefef;
+  border: 1px solid #71b406;
+  font-size: 20px;
+  color:#0000FF;
+  text-align: left;
+  background-color: #FFFFFF;
 `
 const LinkWrapper = styled.div`
   margin: 30px 0 20px 0;
@@ -69,7 +70,7 @@ const Home =  () => {
   return(
 
     <HomeWrapper>
-      {authenticated? <StyledSpan> Welcome, {user.email}</StyledSpan> : <div></div>}
+      {authenticated? <styledDiv> Welcome, {user.email}</styledDiv> : <div></div>}
       {authenticated?<LinkWrapper><Link to={`/job/form`}>Create Job</Link></LinkWrapper>  : <div></div>}
       <h1>All Jobs</h1>
       {/* Render authenticated information */}

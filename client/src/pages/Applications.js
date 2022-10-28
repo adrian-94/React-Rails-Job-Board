@@ -57,13 +57,14 @@ const Applications = () => {
 
   // const[jobData,  setJob] = useState([]);
   const getJob = (job_id) => {
+    console.log('/jobs/'+job_id);
     axios.get('/jobs/'+job_id)
     .then(res => {
       // setJobs(res.data)
       console.log("response data"+res.data);
     })
     .catch(err => {
-      console.log(err)
+      console.log("Error"+err);
     }
     )
   } 
